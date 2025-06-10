@@ -12,18 +12,18 @@ class Anime {
   final List<String> titleSynonyms;
   final String type;
   final String source;
-  final int episodes;
+  final int? episodes;
   final String status;
   final bool airing;
   final AnimeAired aired;
   final String duration;
   final String rating;
-  final double score;
-  final int scoredBy;
-  final int rank;
-  final int popularity;
-  final int members;
-  final int favorites;
+  final double? score;
+  final int? scoredBy;
+  final int? rank;
+  final int? popularity;
+  final int? members;
+  final int? favorites;
   final String synopsis;
   final String background;
   final String? season;
@@ -50,18 +50,18 @@ class Anime {
     required this.titleSynonyms,
     required this.type,
     required this.source,
-    required this.episodes,
+    this.episodes,
     required this.status,
     required this.airing,
     required this.aired,
     required this.duration,
     required this.rating,
-    required this.score,
-    required this.scoredBy,
-    required this.rank,
-    required this.popularity,
-    required this.members,
-    required this.favorites,
+    this.score,
+    this.scoredBy,
+    this.rank,
+    this.popularity,
+    this.members,
+    this.favorites,
     required this.synopsis,
     required this.background,
     this.season,
@@ -94,18 +94,18 @@ class Anime {
           .toList(),
       type: json['type'] as String,
       source: json['source'] as String,
-      episodes: json['episodes'] as int,
+      episodes: json['episodes'] != null ? json['episodes'] as int : null,
       status: json['status'] as String,
       airing: json['airing'] as bool,
       aired: AnimeAired.fromJson(json['aired'] as Map<String, dynamic>),
       duration: json['duration'] as String,
       rating: json['rating'] as String,
-      score: (json['score'] as num).toDouble(),
-      scoredBy: json['scored_by'] as int,
-      rank: json['rank'] as int,
-      popularity: json['popularity'] as int,
-      members: json['members'] as int,
-      favorites: json['favorites'] as int,
+      score: json['score'] != null ? (json['score'] as num).toDouble() : null,
+      scoredBy: json['scored_by'] != null ? json['scored_by'] as int : null,
+      rank: json['rank'] != null ? json['rank'] as int : null,
+      popularity: json['popularity'] != null ? json['popularity'] as int : null,
+      members: json['members'] != null ? json['members'] as int : null,
+      favorites: json['favorites'] != null ? json['favorites'] as int : null,
       synopsis: json['synopsis'] as String,
       background: json['background'] as String,
       season: json['season'] as String?,

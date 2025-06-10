@@ -9,8 +9,12 @@ class DetailsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Details'),
       ),
-      body: Center(
-        child: Text('Details'),
+      body: Column(
+        children: [
+          Center(
+            child: Text('Details'),
+          ),
+        ],
       ),
     );
   }

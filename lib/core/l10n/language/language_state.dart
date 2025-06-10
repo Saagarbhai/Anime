@@ -1,39 +1,21 @@
 import 'package:anime/core/utils/app_export.dart';
 
-abstract class LanguageState extends Equatable {
-  const LanguageState();
+class LanguageState extends Equatable {
+  final Locale? locale;
+  final String errorMessage;
+  final Status languageStatus;
+
+  const LanguageState(
+      {this.locale, this.errorMessage = '', this.languageStatus = Status.init});
+
+  LanguageState copyWith(
+      {Locale? locale, String? errorMessage, Status? languageStatus}) {
+    return LanguageState(
+        locale: locale ?? this.locale,
+        errorMessage: errorMessage ?? this.errorMessage,
+        languageStatus: languageStatus ?? this.languageStatus);
+  }
 
   @override
-  List<Object> get props => [];
-}
-
-class LanguageInitial extends LanguageState {}
-
-class LanguageLoaded extends LanguageState {
-  final Locale locale;
-
-  const LanguageLoaded(this.locale);
-
-  @override
-  List<Object> get props => [locale];
-}
-
-class LanguageLoading extends LanguageState {}
-
-class LanguageError extends LanguageState {
-  final String message;
-
-  const LanguageError(this.message);
-
-  @override
-  List<Object> get props => [message];
-}
-
-class LanguageChanged extends LanguageState {
-  final String languageCode;
-
-  const LanguageChanged(this.languageCode);
-
-  @override
-  List<Object> get props => [languageCode];
+  List<Object?> get props => [locale, errorMessage, languageStatus];
 }

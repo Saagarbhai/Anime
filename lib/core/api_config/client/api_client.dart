@@ -23,7 +23,7 @@ class ApiClient {
   }
 
   Future<void> _initializeHeaders() async {
-    final headers = await _buildHeaders();
+    final headers = _buildHeaders();
     _dio.options.headers = headers;
   }
 
@@ -31,11 +31,7 @@ class ApiClient {
 
   static Map<String, String> _buildHeaders() {
     final header = <String, String>{'Content-Type': 'application/json'};
-    String? deviceToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...';
 
-    if (deviceToken.isNotEmpty) {
-      header['Authorization'] = '$deviceToken';
-    }
     return header;
   }
 

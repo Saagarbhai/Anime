@@ -1,21 +1,17 @@
 import 'package:anime/core/utils/app_export.dart';
 
 abstract class LanguageEvent extends Equatable {
-  const LanguageEvent();
-
   @override
   List<Object> get props => [];
 }
 
-class LoadLanguage extends LanguageEvent {
-  const LoadLanguage();
-}
+class LoadLanguage extends LanguageEvent {}
 
 class ChangeLanguage extends LanguageEvent {
-  final String languageCode;
+  final String code;
 
-  const ChangeLanguage(this.languageCode);
+  ChangeLanguage({required this.code});
 
   @override
-  List<Object> get props => [languageCode];
+  List<Object> get props => [code];
 }

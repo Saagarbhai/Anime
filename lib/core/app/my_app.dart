@@ -8,12 +8,11 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => LanguageBloc()),
+        BlocProvider(create: (context) => HomeBloc()..add(LoadHomePageData())),
       ],
       child: BlocBuilder<LanguageBloc, LanguageState>(
         builder: (context, state) {
-          final locale =
-              state is LanguageLoaded ? state.locale : const Locale('en');
-
+          final locale = Locale('en');
           return ScreenUtilInit(
             designSize: Size(MediaQuery.of(context).size.width,
                 MediaQuery.of(context).size.height),
