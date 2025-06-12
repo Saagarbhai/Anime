@@ -6,3 +6,8 @@ abstract class HomeEvent extends Equatable {
 }
 
 class LoadHomePageData extends HomeEvent {}
+
+class LoadingImage extends HomeEvent {
+  final String imageUrl;
+  LoadingImage({required this.imageUrl});
+}

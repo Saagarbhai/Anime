@@ -31,3 +31,8 @@ export 'package:anime/viewmodel/details/details_bloc.dart';
 export 'package:anime/viewmodel/details/details_event.dart';
 export 'package:anime/viewmodel/details/details_state.dart';
 export 'package:anime/repository/home_repositry.dart';
+export 'package:carousel_slider/carousel_slider.dart';
+export 'package:smooth_page_indicator/smooth_page_indicator.dart';
+export 'package:anime/view/custom_wiget/anime_card.dart';
+export 'package:cached_network_image/cached_network_image.dart';
+export 'package:url_launcher/url_launcher.dart';

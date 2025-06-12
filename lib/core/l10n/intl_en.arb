@@ -1,6 +1,13 @@
 {
   "@@locale": "en",
   "apptitle":"Anime App",
-  "rating": "ating"
-  
+  "rating": "Rating",
+  "appbar_title":"Anime",
+  "allAnime": "All Anime",
+  "imageUnvailable": "Image unavailable",
+  "poppins": "Poppins",
+  "members": "Members",
+  "filter": "Filter",
+  "tv": "Tv Anime",
+  "movie": "Movie Anime"
 }

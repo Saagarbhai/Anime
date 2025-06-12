@@ -15,4 +15,15 @@ class HomeRepository {
       rethrow;
     }
   }
+
+  Future<Anime> getAnimeDataById(int id) async {
+    try {
+      final response = await apiClient.request(
+          RequestType.GET, '${ApiEndPoint.animeIdUrl}/$id');
+      final Anime data = Anime.fromJson(response['data']);
+      return data;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

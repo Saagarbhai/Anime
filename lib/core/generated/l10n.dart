@@ -55,9 +55,59 @@ class Lang {
     return Localizations.of<Lang>(context, Lang);
   }
 
-  /// `Car App`
+  /// `Anime App`
   String get apptitle {
-    return Intl.message('Car App', name: 'apptitle', desc: '', args: []);
+    return Intl.message('Anime App', name: 'apptitle', desc: '', args: []);
+  }
+
+  /// `Rating`
+  String get rating {
+    return Intl.message('Rating', name: 'rating', desc: '', args: []);
+  }
+
+  /// `Anime`
+  String get appbar_title {
+    return Intl.message('Anime', name: 'appbar_title', desc: '', args: []);
+  }
+
+  /// `All Anime`
+  String get allAnime {
+    return Intl.message('All Anime', name: 'allAnime', desc: '', args: []);
+  }
+
+  /// `Image unavailable`
+  String get imageUnvailable {
+    return Intl.message(
+      'Image unavailable',
+      name: 'imageUnvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Poppins`
+  String get poppins {
+    return Intl.message('Poppins', name: 'poppins', desc: '', args: []);
+  }
+
+  /// `Members`
+  String get members {
+    return Intl.message('Members', name: 'members', desc: '', args: []);
+  }
+
+  /// `Filter`
+  String get filter {
+    return Intl.message('Filter', name: 'filter', desc: '', args: []);
+  }
+
+  /// `Tv Anime`
+  String get tv {
+    return Intl.message('Tv Anime', name: 'tv', desc: '', args: []);
+  }
+
+  /// `Movie Anime`
+  String get movie {
+    return Intl.message('Movie Anime', name: 'movie', desc: '', args: []);
   }
 }
 

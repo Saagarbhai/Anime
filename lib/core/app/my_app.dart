@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => LanguageBloc()),
         BlocProvider(create: (context) => HomeBloc()..add(LoadHomePageData())),
+        BlocProvider(create: (context) => DetailBloc()),
       ],
       child: BlocBuilder<LanguageBloc, LanguageState>(
         builder: (context, state) {
