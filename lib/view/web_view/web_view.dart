@@ -1,4 +1,5 @@
 import 'package:anime/core/utils/app_export.dart';
+import 'package:anime/view/custom_wiget/shimmer_effects.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewScreen extends StatelessWidget {
@@ -13,9 +14,7 @@ class WebViewScreen extends StatelessWidget {
         appBar: _appbar(context),
         body: BlocBuilder<WebViewBloc, WebViewState>(builder: (context, state) {
           if (state.webViewStatus == Status.loading) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
+            return ShimmerEffects.webViewShimmer();
           } else if (state.webViewStatus == Status.success) {
             final controller = WebViewController()
               ..setJavaScriptMode(JavaScriptMode.unrestricted)

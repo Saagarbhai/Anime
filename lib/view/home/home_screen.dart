@@ -1,4 +1,5 @@
 import 'package:anime/core/utils/app_export.dart';
+import 'package:anime/view/custom_wiget/shimmer_effects.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -7,6 +8,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final homeBloc = context.read<HomeBloc>();
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: appbar(context),
       body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
@@ -14,7 +16,7 @@ class HomeScreen extends StatelessWidget {
             homeBloc.add(LoadHomePageData());
           }
           if (state.homeStatus == Status.loading) {
-            return Center(child: CircularProgressIndicator());
+            return ShimmerEffects.homeShimmer();
           } else if (state.homeStatus == Status.success) {
             return SingleChildScrollView(
               child: Column(
@@ -45,93 +47,94 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildListViewforcard(List<Anime> listData, BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 16.h),
-      child: Container(
-        height: 165.h,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12.sp),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black45,
-              blurRadius: 10,
-              offset: const Offset(0, 5),
-            ),
-          ],
-        ),
-        child: ListView.builder(
-          itemBuilder: (context, index) {
-            final data = listData[index];
-            return InkWell(
-              onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  AppConstants.detailsRoute,
-                  arguments: data.malId,
-                );
-              },
-              child: Container(
-                height: 190.h,
-                width: 150.w,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12.sp),
+    return Container(
+      height: 180.h,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12.sp),
+      ),
+      child: ListView.builder(
+        itemBuilder: (context, index) {
+          final data = listData[index];
+          return InkWell(
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                AppConstants.detailsRoute,
+                arguments: data.malId,
+              );
+            },
+            child: Container(
+              height: 160.h,
+              width: 150.w,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey[300]!,
+                  width: 2,
                 ),
-                margin: EdgeInsets.only(right: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(12.sp),
-                        topRight: Radius.circular(12.sp),
-                      ),
-                      child: Container(
-                        height: 125.h,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            image: DecorationImage(
-                                image: NetworkImage(
-                                    data.images.jpg.largeImageUrl.toString()),
-                                fit: BoxFit.cover)),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 10.w, top: 2.h),
-                      child: Text(
-                        data.title,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14.sp,
-                            height: 1.3,
-                            fontFamily: Lang.of(context).poppins,
-                            fontWeight: FontWeight.bold,
-                            overflow: TextOverflow.ellipsis),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 10.w),
-                      child: SizedBox(
-                        child: Text(
-                          "${Lang.of(context).rating}: ${data.score?.toString()}",
-                          style: TextStyle(
-                            fontSize: 12.sp,
-                            fontFamily: Lang.of(context).poppins,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.grey[800],
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 4.sp,
+                    offset: Offset(0, 2.h),
+                  ),
+                ],
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12.sp),
               ),
-            );
-          },
-          itemCount: listData.length,
-          scrollDirection: Axis.horizontal,
-        ),
+              margin: EdgeInsets.only(right: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(12.sp),
+                      topRight: Radius.circular(12.sp),
+                    ),
+                    child: Container(
+                      height: 125.h,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                  data.images.jpg.largeImageUrl.toString()),
+                              fit: BoxFit.cover)),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10.w, top: 2.h),
+                    child: Text(
+                      data.title,
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14.sp,
+                          height: 1.3,
+                          fontFamily: Lang.of(context).poppins,
+                          fontWeight: FontWeight.bold,
+                          overflow: TextOverflow.ellipsis),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10.w),
+                    child: SizedBox(
+                      child: Text(
+                        "${Lang.of(context).rating}: ${data.score?.toString()}",
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontFamily: Lang.of(context).poppins,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey[800],
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        },
+        itemCount: listData.length,
+        scrollDirection: Axis.horizontal,
       ),
     );
   }
@@ -207,14 +210,14 @@ class HomeScreen extends StatelessWidget {
                     Container(
                       height: 200.h,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12.sp),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black,
-                            blurRadius: 10,
-                            offset: const Offset(0, 5),
+                            color: Colors.black26,
+                            blurRadius: 10.sp,
+                            offset: Offset(0, 4.h),
                           ),
                         ],
+                        borderRadius: BorderRadius.circular(12.sp),
                       ),
                       width: MediaQuery.of(context).size.width,
                       margin: EdgeInsets.symmetric(horizontal: 5.0.w),
@@ -341,14 +344,18 @@ class HomeScreen extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(12.sp),
+          border: Border.all(
+            color: Colors.grey[300]!,
+            width: 1,
+          ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black38,
-              blurRadius: 10,
-              offset: const Offset(0, 5),
+              color: Colors.black26,
+              blurRadius: 4.sp,
+              offset: Offset(0, 2.h),
             ),
           ],
+          borderRadius: BorderRadius.circular(12.sp),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,

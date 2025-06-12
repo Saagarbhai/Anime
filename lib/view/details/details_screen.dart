@@ -1,4 +1,5 @@
 import 'package:anime/core/utils/app_export.dart';
+import 'package:anime/view/custom_wiget/shimmer_effects.dart';
 
 class DetailsScreen extends StatelessWidget {
   final int? id;
@@ -15,9 +16,7 @@ class DetailsScreen extends StatelessWidget {
       body: BlocBuilder<DetailBloc, DetailState>(
         builder: (context, state) {
           if (state.detailPageStatus == Status.loading) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
+            return ShimmerEffects.detailsShimmer();
           } else if (state.detailPageStatus == Status.success) {
             final data = state.data;
             return SingleChildScrollView(
@@ -263,6 +262,58 @@ class DetailsScreen extends StatelessWidget {
                     spacing: 8.w,
                     runSpacing: 8.h,
                     children: [
+                      Row(
+                        children: [
+                          Text(
+                            'Producers :',
+                            style: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: Lang.of(context).poppins,
+                            ),
+                          ),
+                        ],
+                      ),
+                      ...data.producers.map(
+                        (c) => InkWell(
+                          onTap: () async {
+                            try {
+                              await Navigator.pushNamed(
+                                context,
+                                AppConstants.webViewRoute,
+                                arguments: c.url,
+                              );
+                            } catch (e) {
+                              debugPrint(e.toString());
+                            }
+                          },
+                          child: Chip(
+                            label: Text(
+                              c.name,
+                              style: TextStyle(
+                                fontFamily: Lang.of(context).poppins,
+                                color: Colors.white,
+                              ),
+                            ),
+                            backgroundColor: Theme.of(context).primaryColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.r),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Genres :',
+                            style: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: Lang.of(context).poppins,
+                            ),
+                          ),
+                        ],
+                      ),
                       ...data.genres.map(
                         (g) => InkWell(
                           onTap: () async {
@@ -276,52 +327,130 @@ class DetailsScreen extends StatelessWidget {
                               debugPrint(e.toString());
                             }
                           },
-                          child: InkWell(
-                            onTap: () async {
-                              try {
-                                await Navigator.pushNamed(
-                                  context,
-                                  AppConstants.webViewRoute,
-                                  arguments: g.url,
-                                );
-                              } catch (e) {
-                                debugPrint(e.toString());
-                              }
-                            },
-                            child: Chip(
-                              label: Text(
-                                g.name,
-                                style: TextStyle(
-                                  fontFamily: Lang.of(context).poppins,
-                                  color: Colors.white,
-                                ),
+                          child: Chip(
+                            label: Text(
+                              g.name,
+                              style: TextStyle(
+                                fontFamily: Lang.of(context).poppins,
+                                color: Colors.white,
                               ),
-                              backgroundColor: Theme.of(context).primaryColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12.r),
-                              ),
+                            ),
+                            backgroundColor: Theme.of(context).primaryColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.r),
                             ),
                           ),
                         ),
                       ),
-                      ...data.themes.map(
-                        (t) => Chip(
-                          label: Text(
-                            t.name,
+                      Row(
+                        children: [
+                          Text(
+                            'Themes :',
                             style: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.bold,
                               fontFamily: Lang.of(context).poppins,
-                              color: Colors.white,
                             ),
                           ),
-                          backgroundColor: Theme.of(context).primaryColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12.r),
+                        ],
+                      ),
+                      ...data.themes.map(
+                        (t) => InkWell(
+                          onTap: () async {
+                            try {
+                              await Navigator.pushNamed(
+                                context,
+                                AppConstants.webViewRoute,
+                                arguments: t.url,
+                              );
+                            } catch (e) {
+                              debugPrint(e.toString());
+                            }
+                          },
+                          child: Chip(
+                            label: Text(
+                              t.name,
+                              style: TextStyle(
+                                fontFamily: Lang.of(context).poppins,
+                                color: Colors.white,
+                              ),
+                            ),
+                            backgroundColor: Theme.of(context).primaryColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.r),
+                            ),
                           ),
                         ),
                       ),
                     ],
                   ),
                   SizedBox(height: 16.h),
+                  Text(
+                    "Broadcast",
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: Lang.of(context).poppins,
+                    ),
+                  ),
+                  SizedBox(height: 8.h),
+                  Row(
+                    children: [
+                      Text(
+                        "Day: ",
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                      Text(
+                        data.broadcast.day.toString(),
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8.h),
+                  Row(
+                    children: [
+                      Text(
+                        "Time: ",
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                      Text(
+                        data.broadcast.time.toString(),
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8.h),
+                  Row(
+                    children: [
+                      Text(
+                        "Timezone: ",
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                      Text(
+                        data.broadcast.timezone.toString(),
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8.h),
                   Text(
                     "Synopsis",
                     style: TextStyle(
@@ -371,6 +500,17 @@ class DetailsScreen extends StatelessWidget {
                     data.members != null
                         ? "Members: ${data.members}"
                         : "Members: N/A",
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontFamily: Lang.of(context).poppins,
+                    ),
+                    textAlign: TextAlign.justify,
+                  ),
+                  SizedBox(height: 8.h),
+                  Text(
+                    data.favorites != null
+                        ? "Favorites: ${data.favorites}"
+                        : "Favorites: N/A",
                     style: TextStyle(
                       fontSize: 14.sp,
                       fontFamily: Lang.of(context).poppins,
