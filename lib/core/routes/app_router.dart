@@ -8,7 +8,12 @@ class AppRoutes {
         final args = ModalRoute.of(context)?.settings.arguments;
         final id = (args is int) ? args : 0;
         return DetailsScreen(id: id);
-      }
+      },
+      AppConstants.webViewRoute: (context) {
+        final args = ModalRoute.of(context)?.settings.arguments;
+        final url = (args is String) ? args : '';
+        return WebViewScreen(url: url);
+      },
     };
   }
 }

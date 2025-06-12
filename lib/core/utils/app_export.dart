@@ -36,3 +36,7 @@ export 'package:smooth_page_indicator/smooth_page_indicator.dart';
 export 'package:anime/view/custom_wiget/anime_card.dart';
 export 'package:cached_network_image/cached_network_image.dart';
 export 'package:url_launcher/url_launcher.dart';
+export 'package:anime/view/web_view/web_view.dart';
+export 'package:anime/viewmodel/web_view/webview_bloc.dart';
+export 'package:anime/viewmodel/web_view/webview_event.dart';
+export 'package:anime/viewmodel/web_view/webview_state.dart';

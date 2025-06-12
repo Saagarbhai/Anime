@@ -31,6 +31,13 @@ class DetailsScreen extends StatelessWidget {
                       width: double.infinity,
                       height: 500.h,
                       decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black,
+                            blurRadius: 10.r,
+                            offset: Offset(0, 4.h),
+                          ),
+                        ],
                         borderRadius: BorderRadius.circular(12.r),
                         image: DecorationImage(
                           image: NetworkImage(data!.images.jpg.largeImageUrl),
@@ -52,7 +59,7 @@ class DetailsScreen extends StatelessWidget {
                     data.titleJapanese,
                     style: TextStyle(
                       fontSize: 16.sp,
-                      color: Colors.grey,
+                      color: Colors.grey[600],
                       fontFamily: Lang.of(context).poppins,
                     ),
                   ),
@@ -66,22 +73,234 @@ class DetailsScreen extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 16.h),
+                  Row(
+                    children: [
+                      Text(
+                        "Aired",
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                      SizedBox(width: 8.w),
+                      Text(
+                        "${data.aired.prop.from.day}/${data.aired.prop.from.month}/${data.aired.prop.from.year} - ${data.aired.prop.to.day}/${data.aired.prop.to.month}/${data.aired.prop.to.year}",
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8.h),
+                  Row(
+                    children: [
+                      Text(
+                        "Type",
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                      SizedBox(width: 8.w),
+                      Text(
+                        data.type,
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8.h),
+                  Row(
+                    children: [
+                      Text(
+                        "Status",
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                      SizedBox(width: 8.w),
+                      Text(
+                        data.status,
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8.h),
+                  Row(
+                    children: [
+                      Text(
+                        "Rating",
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                      SizedBox(width: 8.w),
+                      Text(
+                        data.rating,
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8.h),
+                  Row(
+                    children: [
+                      Text(
+                        "Source",
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                      SizedBox(width: 8.w),
+                      Text(
+                        data.source,
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8.h),
+                  Row(
+                    children: [
+                      Text(
+                        "Duration",
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                      SizedBox(width: 8.w),
+                      Text(
+                        data.duration,
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8.h),
+                  Row(
+                    children: [
+                      Text(
+                        "Trailer",
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                      SizedBox(width: 8.w),
+                      Text(
+                        data.trailer.url != null && data.trailer.url!.isNotEmpty
+                            ? "Available"
+                            : "N/A",
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8.h),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).primaryColor,
+                        padding: EdgeInsets.symmetric(vertical: 14.h),
+                      ),
+                      onPressed: () async {
+                        try {
+                          if (data.trailer.url != null) {
+                            await Navigator.pushNamed(
+                              context,
+                              AppConstants.webViewRoute,
+                              arguments: data.trailer.url,
+                            );
+                          }
+                        } catch (e) {
+                          debugPrint(e.toString());
+                        }
+                      },
+                      icon: Icon(
+                        Icons.play_circle_fill_rounded,
+                        size: 24.sp,
+                        color: Colors.white,
+                      ),
+                      label: Text(
+                        "Watch Trailer",
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontFamily: Lang.of(context).poppins,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 16.h),
                   Wrap(
                     spacing: 8.w,
                     runSpacing: 8.h,
                     children: [
                       ...data.genres.map(
-                        (g) => Chip(
-                          label: Text(
-                            g.name,
-                            style: TextStyle(
-                              fontFamily: Lang.of(context).poppins,
-                              color: Colors.white,
+                        (g) => InkWell(
+                          onTap: () async {
+                            try {
+                              await Navigator.pushNamed(
+                                context,
+                                AppConstants.webViewRoute,
+                                arguments: g.url,
+                              );
+                            } catch (e) {
+                              debugPrint(e.toString());
+                            }
+                          },
+                          child: InkWell(
+                            onTap: () async {
+                              try {
+                                await Navigator.pushNamed(
+                                  context,
+                                  AppConstants.webViewRoute,
+                                  arguments: g.url,
+                                );
+                              } catch (e) {
+                                debugPrint(e.toString());
+                              }
+                            },
+                            child: Chip(
+                              label: Text(
+                                g.name,
+                                style: TextStyle(
+                                  fontFamily: Lang.of(context).poppins,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              backgroundColor: Theme.of(context).primaryColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12.r),
+                              ),
                             ),
-                          ),
-                          backgroundColor: Theme.of(context).primaryColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12.r),
                           ),
                         ),
                       ),
@@ -120,39 +339,44 @@ class DetailsScreen extends StatelessWidget {
                     ),
                     textAlign: TextAlign.justify,
                   ),
-                  SizedBox(height: 24.h),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).primaryColor,
-                        padding: EdgeInsets.symmetric(vertical: 14.h),
-                      ),
-                      onPressed: () async {
-                        try {
-                          if (data.trailer.url != null) {
-                            await launchUrl(Uri.parse(data.trailer.url!));
-                          }
-                        } catch (e) {
-                          debugPrint(e.toString());
-                        }
-                      },
-                      icon: Icon(
-                        Icons.play_circle_fill_rounded,
-                        size: 24.sp,
-                        color: Colors.white,
-                      ),
-                      label: Text(
-                        "Watch Trailer",
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontFamily: Lang.of(context).poppins,
-                        ),
-                      ),
+                  SizedBox(height: 16.h),
+                  Text(
+                    "Background",
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: Lang.of(context).poppins,
                     ),
-                  )
+                  ),
+                  SizedBox(height: 8.h),
+                  Text(
+                    data.background,
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontFamily: Lang.of(context).poppins,
+                    ),
+                    textAlign: TextAlign.justify,
+                  ),
+                  SizedBox(height: 16.h),
+                  Text(
+                    "More Info",
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: Lang.of(context).poppins,
+                    ),
+                  ),
+                  SizedBox(height: 8.h),
+                  Text(
+                    data.members != null
+                        ? "Members: ${data.members}"
+                        : "Members: N/A",
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontFamily: Lang.of(context).poppins,
+                    ),
+                    textAlign: TextAlign.justify,
+                  ),
                 ],
               ),
             );
@@ -170,13 +394,12 @@ class DetailsScreen extends StatelessWidget {
 
   AppBar _appbar(BuildContext context) {
     return AppBar(
-      automaticallyImplyLeading: false,
+      foregroundColor: Colors.white,
       title: Text(
         Lang.of(context).appbar_title,
         style: TextStyle(
           fontSize: 20.sp,
           fontWeight: FontWeight.bold,
-          color: Colors.white,
           fontFamily: Lang.of(context).poppins,
         ),
       ),
@@ -199,9 +422,9 @@ class DetailsScreen extends StatelessWidget {
         Text(
           label,
           style: TextStyle(
-            color: Colors.grey,
+            color: Colors.grey[600],
             fontFamily: Lang.of(context).poppins,
-            fontSize: 12.sp,
+            fontSize: 14.sp,
           ),
         ),
       ],
