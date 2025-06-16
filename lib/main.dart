@@ -5,7 +5,7 @@ void main() {
 
   runApp(
     ToastificationWrapper(
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }

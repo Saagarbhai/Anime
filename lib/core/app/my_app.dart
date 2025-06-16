@@ -1,3 +1,4 @@
+import 'package:anime/core/theme/theme.dart';
 import 'package:anime/core/utils/app_export.dart';
 
 class MyApp extends StatelessWidget {
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
               return MaterialApp(
                 navigatorKey: navigatorKey,
                 title: AppConstants.appName,
-                themeMode: ThemeMode.system,
+                theme: MyAppThemeHelper.lightTheme,
                 locale: locale,
                 supportedLocales: const [
                   Locale('en'), // English

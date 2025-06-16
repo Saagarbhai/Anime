@@ -40,3 +40,6 @@ export 'package:anime/view/web_view/web_view.dart';
 export 'package:anime/viewmodel/web_view/webview_bloc.dart';
 export 'package:anime/viewmodel/web_view/webview_event.dart';
 export 'package:anime/viewmodel/web_view/webview_state.dart';
+export 'package:anime/view/custom_wiget/shimmer_effects.dart';
+export 'package:anime/view/custom_wiget/chip.dart';
+export 'package:google_fonts/google_fonts.dart';

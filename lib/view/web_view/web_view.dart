@@ -1,5 +1,4 @@
 import 'package:anime/core/utils/app_export.dart';
-import 'package:anime/view/custom_wiget/shimmer_effects.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewScreen extends StatelessWidget {
@@ -42,7 +41,7 @@ class WebViewScreen extends StatelessWidget {
         style: TextStyle(
           fontSize: 20.sp,
           fontWeight: FontWeight.bold,
-          fontFamily: Lang.of(context).poppins,
+          fontFamily: Lang.of(context).text_poppins,
         ),
       ),
       centerTitle: true,

@@ -1,5 +1,5 @@
+import 'package:anime/core/theme/theme.dart';
 import 'package:anime/core/utils/app_export.dart';
-import 'package:anime/view/custom_wiget/shimmer_effects.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -8,7 +8,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final homeBloc = context.read<HomeBloc>();
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: MyAppThemeHelper.white,
       appBar: appbar(context),
       body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
@@ -25,10 +25,16 @@ class HomeScreen extends StatelessWidget {
                   _curouselslider(state),
                   SizedBox(height: 16.h),
                   _tvtext(context),
-                  _buildListViewforcard(state.tvData, context),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10.w),
+                    child: _buildListViewforcard(state.tvData, context),
+                  ),
                   SizedBox(height: 16.h),
                   _movietext(context),
-                  _buildListViewforcard(state.movieData, context),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10.w),
+                    child: _buildListViewforcard(state.movieData, context),
+                  ),
                   _allanimetext(context),
                   _buildListView(state.data),
                 ],
@@ -55,7 +61,7 @@ class HomeScreen extends StatelessWidget {
       child: ListView.builder(
         itemBuilder: (context, index) {
           final data = listData[index];
-          return InkWell(
+          return GestureDetector(
             onTap: () {
               Navigator.pushNamed(
                 context,
@@ -68,18 +74,18 @@ class HomeScreen extends StatelessWidget {
               width: 150.w,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.grey[300]!,
+                  color: MyAppThemeHelper.grey.withOpacity(0.3),
                   width: 2,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 4.sp,
+                    color: Theme.of(context).primaryColor.withOpacity(0.2),
+                    blurRadius: 5.sp,
                     offset: Offset(0, 2.h),
                   ),
                 ],
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12.sp),
+                color: MyAppThemeHelper.white,
+                borderRadius: BorderRadius.circular(14.sp),
               ),
               margin: EdgeInsets.only(right: 10),
               child: Column(
@@ -91,9 +97,9 @@ class HomeScreen extends StatelessWidget {
                       topRight: Radius.circular(12.sp),
                     ),
                     child: Container(
-                      height: 125.h,
+                      height: 135.h,
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: MyAppThemeHelper.white,
                           image: DecorationImage(
                               image: NetworkImage(
                                   data.images.jpg.largeImageUrl.toString()),
@@ -101,28 +107,26 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 10.w, top: 2.h),
+                    padding: EdgeInsets.only(left: 10.w, top: 3.h),
                     child: Text(
                       data.title,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14.sp,
-                          height: 1.3,
-                          fontFamily: Lang.of(context).poppins,
-                          fontWeight: FontWeight.bold,
-                          overflow: TextOverflow.ellipsis),
+                      maxLines: 1,
+                      style: MyAppThemeHelper.lightTheme.textTheme.bodyMedium!
+                          .copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
+                  SizedBox(height: 1.h),
                   Padding(
                     padding: EdgeInsets.only(left: 10.w),
                     child: SizedBox(
                       child: Text(
-                        "${Lang.of(context).rating}: ${data.score?.toString()}",
-                        style: TextStyle(
+                        "${Lang.of(context).lbl_rating}: ${data.score?.toString()}",
+                        style: MyAppThemeHelper.lightTheme.textTheme.labelSmall!
+                            .copyWith(
                           fontSize: 12.sp,
-                          fontFamily: Lang.of(context).poppins,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.grey[800],
+                          color: MyAppThemeHelper.grey.withOpacity(0.8),
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -143,13 +147,8 @@ class HomeScreen extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 8.h),
       child: Text(
-        Lang.of(context).tv,
-        style: TextStyle(
-          fontSize: 20.sp,
-          fontFamily: Lang.of(context).poppins,
-          fontWeight: FontWeight.bold,
-          color: Theme.of(context).primaryColor,
-        ),
+        Lang.of(context).lbl_tv,
+        style: MyAppThemeHelper.lightTheme.textTheme.titleMedium,
       ),
     );
   }
@@ -158,13 +157,8 @@ class HomeScreen extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 8.h),
       child: Text(
-        Lang.of(context).movie,
-        style: TextStyle(
-          fontSize: 20.sp,
-          fontFamily: Lang.of(context).poppins,
-          color: Theme.of(context).primaryColor,
-          fontWeight: FontWeight.bold,
-        ),
+        Lang.of(context).lbl_movie,
+        style: MyAppThemeHelper.lightTheme.textTheme.titleMedium,
       ),
     );
   }
@@ -173,13 +167,8 @@ class HomeScreen extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 8.h),
       child: Text(
-        Lang.of(context).allAnime,
-        style: TextStyle(
-          fontSize: 20.sp,
-          fontFamily: Lang.of(context).poppins,
-          fontWeight: FontWeight.bold,
-          color: Theme.of(context).primaryColor,
-        ),
+        Lang.of(context).lbl_allAnime,
+        style: MyAppThemeHelper.lightTheme.textTheme.titleMedium,
       ),
     );
   }
@@ -200,7 +189,7 @@ class HomeScreen extends StatelessWidget {
         items: state.data.map((anime) {
           return Builder(
             builder: (BuildContext context) {
-              return InkWell(
+              return GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, AppConstants.detailsRoute,
                       arguments: anime.malId);
@@ -212,7 +201,8 @@ class HomeScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black26,
+                            color:
+                                Theme.of(context).primaryColor.withOpacity(0.2),
                             blurRadius: 10.sp,
                             offset: Offset(0, 4.h),
                           ),
@@ -229,7 +219,7 @@ class HomeScreen extends StatelessWidget {
                           loadingBuilder: (context, child, loadingProgress) {
                             if (loadingProgress == null) return child;
                             return Container(
-                              color: Colors.grey[200],
+                              color: MyAppThemeHelper.grey.withOpacity(0.2),
                               child: Center(
                                 child: CircularProgressIndicator(
                                   value: loadingProgress.expectedTotalBytes !=
@@ -238,7 +228,7 @@ class HomeScreen extends StatelessWidget {
                                           (loadingProgress.expectedTotalBytes ??
                                               1)
                                       : null,
-                                  color: Theme.of(context).primaryColor,
+                                  color: MyAppThemeHelper.primary,
                                 ),
                               ),
                             );
@@ -246,11 +236,11 @@ class HomeScreen extends StatelessWidget {
                           errorBuilder: (context, error, stackTrace) {
                             debugPrint('Error loading image: $error');
                             return Container(
-                              color: Colors.grey[300],
+                              color: MyAppThemeHelper.grey.withOpacity(0.3),
                               child: Center(
                                 child: Icon(
                                   Icons.image_not_supported,
-                                  color: Colors.grey[500],
+                                  color: MyAppThemeHelper.grey.withOpacity(0.5),
                                   size: 32.sp,
                                 ),
                               ),
@@ -283,11 +273,13 @@ class HomeScreen extends StatelessWidget {
                                 horizontal: 16.w, vertical: 4.h),
                             child: Text(
                               state.data[state.data.indexOf(anime)].title,
-                              style: TextStyle(
+                              style: MyAppThemeHelper
+                                  .lightTheme.textTheme.titleLarge!
+                                  .copyWith(
                                 fontSize: 26.sp,
                                 fontWeight: FontWeight.bold,
-                                color: const Color.fromARGB(255, 246, 196, 255),
-                                fontFamily: Lang.of(context).poppins,
+                                color: MyAppThemeHelper.white,
+                                fontFamily: Lang.of(context).text_poppins,
                               ),
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -310,15 +302,11 @@ class HomeScreen extends StatelessWidget {
     return AppBar(
       title: Text(
         Lang.of(context).appbar_title,
-        style: TextStyle(
-          fontSize: 20.sp,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-          fontFamily: Lang.of(context).poppins,
-        ),
+        style: MyAppThemeHelper.lightTheme.textTheme.titleLarge!
+            .copyWith(color: MyAppThemeHelper.white),
       ),
       centerTitle: true,
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: MyAppThemeHelper.primary,
     );
   }
 
@@ -328,7 +316,7 @@ class HomeScreen extends StatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       padding: EdgeInsets.all(16.w),
       itemCount: anime.length,
-      separatorBuilder: (context, index) => SizedBox(height: 16.h),
+      separatorBuilder: (context, index) => SizedBox(height: 12.h),
       itemBuilder: (context, index) {
         return _buildListCard(anime[index], context);
       },
@@ -336,16 +324,16 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildListCard(Anime anime, BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, AppConstants.detailsRoute,
             arguments: anime.malId);
       },
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: MyAppThemeHelper.white,
           border: Border.all(
-            color: Colors.grey[300]!,
+            color: MyAppThemeHelper.grey.withOpacity(0.3),
             width: 1,
           ),
           boxShadow: [
@@ -377,14 +365,14 @@ class HomeScreen extends StatelessWidget {
                   return Container(
                     height: 140.h,
                     width: 120.w,
-                    color: Colors.grey[200],
+                    color: MyAppThemeHelper.grey.withOpacity(0.2),
                     child: Center(
                       child: CircularProgressIndicator(
                         value: loadingProgress.expectedTotalBytes != null
                             ? loadingProgress.cumulativeBytesLoaded /
                                 (loadingProgress.expectedTotalBytes ?? 1)
                             : null,
-                        color: Theme.of(context).primaryColor,
+                        color: MyAppThemeHelper.primary,
                       ),
                     ),
                   );
@@ -394,24 +382,21 @@ class HomeScreen extends StatelessWidget {
                   return Container(
                     height: 140.h,
                     width: 120.w,
-                    color: Colors.grey[300],
+                    color: MyAppThemeHelper.grey.withOpacity(0.3),
                     child: Center(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(
                             Icons.image_not_supported,
-                            color: Colors.grey[500],
+                            color: MyAppThemeHelper.grey.withOpacity(0.5),
                             size: 32.sp,
                           ),
                           SizedBox(height: 8.h),
                           Text(
-                            Lang.of(context).imageUnvailable,
-                            style: TextStyle(
-                              color: Colors.grey[600],
-                              fontFamily: 'Poppins',
-                              fontSize: 12.sp,
-                            ),
+                            Lang.of(context).error_imageUnvailable,
+                            style:
+                                MyAppThemeHelper.lightTheme.textTheme.bodyLarge,
                           ),
                         ],
                       ),
@@ -442,14 +427,12 @@ class HomeScreen extends StatelessWidget {
                                 color: Colors.amber[100],
                                 borderRadius: BorderRadius.circular(4.sp),
                               ),
-                              child: Text(
-                                anime.source,
-                                style: TextStyle(
-                                  color: Colors.amber[800],
-                                  fontSize: 10.sp,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                              child: Text(anime.source,
+                                  style: MyAppThemeHelper
+                                      .lightTheme.textTheme.labelSmall!
+                                      .copyWith(
+                                    color: Colors.amber.shade800,
+                                  )),
                             ),
                             const Spacer(),
                             Container(
@@ -463,9 +446,10 @@ class HomeScreen extends StatelessWidget {
                               ),
                               child: Text(
                                 anime.type,
-                                style: TextStyle(
-                                  color: Colors.grey[800],
-                                  fontSize: 10.sp,
+                                style: MyAppThemeHelper
+                                    .lightTheme.textTheme.labelSmall!
+                                    .copyWith(
+                                  color: MyAppThemeHelper.grey.withOpacity(0.9),
                                 ),
                               ),
                             ),
@@ -474,34 +458,25 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(height: 8.h),
                         Text(
                           anime.title,
-                          style: TextStyle(
-                            fontFamily: Lang.of(context).poppins,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16.sp,
-                            color: Colors.grey[800],
-                          ),
+                          style: MyAppThemeHelper
+                              .lightTheme.textTheme.titleLarge!
+                              .copyWith(height: 0.9, fontSize: 18.sp),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
                         SizedBox(height: 4.h),
                         SizedBox(
                           child: Text(
-                            "${Lang.of(context).rating}: ${anime.score?.toString()}",
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              fontFamily: Lang.of(context).poppins,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.grey[600],
-                            ),
+                            "${Lang.of(context).lbl_rating}: ${anime.score?.toString()}",
+                            style: MyAppThemeHelper
+                                .lightTheme.textTheme.labelSmall,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         Text(
-                          "${Lang.of(context).members}:${anime.members}",
-                          style: TextStyle(
-                            fontSize: 12.sp,
-                            color: Colors.grey[600],
-                          ),
+                          "${Lang.of(context).lbl_members}:${anime.members}",
+                          style:
+                              MyAppThemeHelper.lightTheme.textTheme.labelSmall,
                         ),
                       ],
                     ),
@@ -519,12 +494,9 @@ class HomeScreen extends StatelessWidget {
                             SizedBox(width: 4.w),
                             Text(
                               anime.rating.toString(),
-                              style: TextStyle(
-                                fontFamily: Lang.of(context).poppins,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12.sp,
-                                color: Colors.grey[800],
-                              ),
+                              style: MyAppThemeHelper
+                                  .lightTheme.textTheme.labelSmall!
+                                  .copyWith(fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),

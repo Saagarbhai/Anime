@@ -2,7 +2,6 @@ import 'package:anime/core/utils/app_export.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerEffects {
-  // Base shimmer widget
   static Widget baseShimmer({
     required Widget child,
     Color baseColor = const Color(0xFFE0E0E0),
@@ -15,7 +14,6 @@ class ShimmerEffects {
     );
   }
 
-  // Home screen carousel shimmer
   static Widget carouselShimmer() {
     return baseShimmer(
       child: Container(
@@ -29,7 +27,6 @@ class ShimmerEffects {
     );
   }
 
-  // Card shimmer for horizontal scrolling lists
   static Widget horizontalCardShimmer() {
     return baseShimmer(
       child: Container(
@@ -75,7 +72,6 @@ class ShimmerEffects {
     );
   }
 
-  // List card shimmer for vertical list
   static Widget listCardShimmer() {
     return baseShimmer(
       child: Container(
@@ -165,7 +161,6 @@ class ShimmerEffects {
     );
   }
 
-  // Details screen shimmer
   static Widget detailsShimmer() {
     return baseShimmer(
       child: SingleChildScrollView(
@@ -209,7 +204,6 @@ class ShimmerEffects {
               ),
             ),
             SizedBox(height: 16.h),
-            // Info rows
             ...List.generate(
               7,
               (index) => Padding(
@@ -258,7 +252,6 @@ class ShimmerEffects {
     );
   }
 
-  // WebView shimmer
   static Widget webViewShimmer() {
     return baseShimmer(
       child: Container(
@@ -269,17 +262,13 @@ class ShimmerEffects {
     );
   }
 
-  // Home screen shimmer
   static Widget homeShimmer() {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Carousel shimmer
           carouselShimmer(),
           SizedBox(height: 16.h),
-
-          // TV section
           Padding(
             padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 8.h),
             child: baseShimmer(
@@ -290,23 +279,18 @@ class ShimmerEffects {
               ),
             ),
           ),
-
-          // Horizontal card list shimmer for TV
           Padding(
             padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 16.h),
             child: SizedBox(
               height: 165.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 5, // Show 5 shimmer items
+                itemCount: 5,
                 itemBuilder: (context, index) => horizontalCardShimmer(),
               ),
             ),
           ),
-
           SizedBox(height: 16.h),
-
-          // Movie section
           Padding(
             padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 8.h),
             child: baseShimmer(
@@ -317,21 +301,17 @@ class ShimmerEffects {
               ),
             ),
           ),
-
-          // Horizontal card list shimmer for Movie
           Padding(
             padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 16.h),
             child: SizedBox(
               height: 165.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 5, // Show 5 shimmer items
+                itemCount: 5,
                 itemBuilder: (context, index) => horizontalCardShimmer(),
               ),
             ),
           ),
-
-          // All anime section
           Padding(
             padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 8.h),
             child: baseShimmer(
@@ -342,13 +322,11 @@ class ShimmerEffects {
               ),
             ),
           ),
-
-          // Vertical list shimmer
           ListView.separated(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             padding: EdgeInsets.all(16.w),
-            itemCount: 5, // Show 5 shimmer items
+            itemCount: 5,
             separatorBuilder: (context, index) => SizedBox(height: 16.h),
             itemBuilder: (context, index) => listCardShimmer(),
           ),
