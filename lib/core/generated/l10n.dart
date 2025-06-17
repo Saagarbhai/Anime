@@ -264,6 +264,16 @@ class Lang {
       args: [],
     );
   }
+
+  /// `Error loading image: `
+  String get error_lbl_Errorloadingimage {
+    return Intl.message(
+      'Error loading image: ',
+      name: 'error_lbl_Errorloadingimage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Lang> {

@@ -1,4 +1,3 @@
-import 'package:anime/core/theme/theme.dart';
 import 'package:anime/core/utils/app_export.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -59,7 +58,7 @@ class DetailsScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 12.h),
+          Gap(12.h),
           Text(
             data.title,
             style: MyAppThemeHelper.lightTheme.textTheme.titleLarge!
@@ -69,7 +68,7 @@ class DetailsScreen extends StatelessWidget {
             data.titleJapanese,
             style: MyAppThemeHelper.lightTheme.textTheme.bodyLarge,
           ),
-          SizedBox(height: 12.h),
+          Gap(12.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -79,107 +78,45 @@ class DetailsScreen extends StatelessWidget {
               _infoTile(Lang.of(context).lbl_rank, "#${data.rank}", context),
             ],
           ),
-          SizedBox(height: 16.h),
-          Row(
-            children: [
-              Text(
-                Lang.of(context).lbl_aried,
-                style: MyAppThemeHelper.lightTheme.textTheme.bodyLarge,
-              ),
-              SizedBox(width: 8.w),
-              Text(
+          Gap(16.h),
+          LabeledValueWidget(
+            label: Lang.of(context).lbl_aried,
+            value:
                 "${data.aired.prop.from.day}/${data.aired.prop.from.month}/${data.aired.prop.from.year} - ${data.aired.prop.to.day}/${data.aired.prop.to.month}/${data.aired.prop.to.year}",
-                style: MyAppThemeHelper.lightTheme.textTheme.bodyMedium,
-              ),
-            ],
           ),
-          SizedBox(height: 8.h),
-          Row(
-            children: [
-              Text(
-                Lang.of(context).lbl_type,
-                style: MyAppThemeHelper.lightTheme.textTheme.bodyLarge,
-              ),
-              SizedBox(width: 8.w),
-              Text(
-                data.type,
-                style: MyAppThemeHelper.lightTheme.textTheme.bodyMedium,
-              ),
-            ],
+          Gap(8.h),
+          LabeledValueWidget(
+            label: Lang.of(context).lbl_type,
+            value: data.type,
           ),
-          SizedBox(height: 8.h),
-          Row(
-            children: [
-              Text(
-                Lang.of(context).lbl_status,
-                style: MyAppThemeHelper.lightTheme.textTheme.bodyLarge,
-              ),
-              SizedBox(width: 8.w),
-              Text(
-                data.status,
-                style: MyAppThemeHelper.lightTheme.textTheme.bodyMedium,
-              ),
-            ],
+          Gap(8.h),
+          LabeledValueWidget(
+            label: Lang.of(context).lbl_status,
+            value: data.status,
           ),
-          SizedBox(height: 8.h),
-          Row(
-            children: [
-              Text(
-                Lang.of(context).lbl_rating,
-                style: MyAppThemeHelper.lightTheme.textTheme.bodyLarge,
-              ),
-              SizedBox(width: 8.w),
-              Text(
-                data.rating,
-                style: MyAppThemeHelper.lightTheme.textTheme.bodyMedium,
-              ),
-            ],
+          Gap(8.h),
+          LabeledValueWidget(
+            label: Lang.of(context).lbl_rating,
+            value: data.rating,
           ),
-          SizedBox(height: 8.h),
-          Row(
-            children: [
-              Text(
-                Lang.of(context).lbl_source,
-                style: MyAppThemeHelper.lightTheme.textTheme.bodyLarge,
-              ),
-              SizedBox(width: 8.w),
-              Text(
-                data.source,
-                style: MyAppThemeHelper.lightTheme.textTheme.bodyMedium,
-              ),
-            ],
+          Gap(8.h),
+          LabeledValueWidget(
+            label: Lang.of(context).lbl_duration,
+            value: data.duration,
           ),
-          SizedBox(height: 8.h),
-          Row(
-            children: [
-              Text(
-                Lang.of(context).lbl_duration,
-                style: MyAppThemeHelper.lightTheme.textTheme.bodyLarge,
-              ),
-              SizedBox(width: 8.w),
-              Text(
-                data.duration,
-                style: MyAppThemeHelper.lightTheme.textTheme.bodyMedium,
-              ),
-            ],
+          Gap(8.h),
+          LabeledValueWidget(
+            label: Lang.of(context).lbl_trailer,
+            value: data.trailer.url != null && data.trailer.url!.isNotEmpty
+                ? Lang.of(context).lbl_available
+                : Lang.of(context).lbl_na,
           ),
-          SizedBox(height: 8.h),
-          Row(
-            children: [
-              Text(
-                Lang.of(context).lbl_trailer,
-                style: MyAppThemeHelper.lightTheme.textTheme.bodyLarge,
-              ),
-              SizedBox(width: 8.w),
-              Text(
-                data.trailer.url != null && data.trailer.url!.isNotEmpty
-                    ? Lang.of(context).lbl_available
-                    : Lang.of(context).lbl_na,
-                style: MyAppThemeHelper.lightTheme.textTheme.bodyMedium,
-              ),
-            ],
+          Gap(8.h),
+          LabeledValueWidget(
+            label: Lang.of(context).lbl_source,
+            value: data.source,
           ),
-          SizedBox(height: 8.h),
+          Gap(8.h),
           SizedBox(
             width: double.infinity,
             child: ElevatedButton.icon(
@@ -214,7 +151,7 @@ class DetailsScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 16.h),
+          Gap(16.h),
           Wrap(
             spacing: 8.w,
             runSpacing: 8.h,
@@ -254,92 +191,66 @@ class DetailsScreen extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 16.h),
+          Gap(16.h),
           Text(
             Lang.of(context).lbl_broadcast,
             style: MyAppThemeHelper.lightTheme.textTheme.bodyLarge,
           ),
-          SizedBox(height: 8.h),
-          Row(
-            children: [
-              Text(
-                Lang.of(context).lbl_day,
-                style: MyAppThemeHelper.lightTheme.textTheme.bodyMedium,
-              ),
-              Text(
-                data.broadcast.day.toString(),
-                style: MyAppThemeHelper.lightTheme.textTheme.bodyMedium,
-              ),
-            ],
+          Gap(8.h),
+          LabeledValueWidget(
+            label: Lang.of(context).lbl_day,
+            value: data.broadcast.day.toString(),
           ),
-          SizedBox(height: 8.h),
-          Row(
-            children: [
-              Text(
-                Lang.of(context).lbl_time,
-                style: MyAppThemeHelper.lightTheme.textTheme.bodyMedium,
-              ),
-              Text(
-                data.broadcast.time.toString(),
-                style: MyAppThemeHelper.lightTheme.textTheme.bodyMedium,
-              ),
-            ],
+          Gap(8.h),
+          LabeledValueWidget(
+            label: Lang.of(context).lbl_time,
+            value: data.broadcast.time.toString(),
           ),
-          SizedBox(height: 8.h),
-          Row(
-            children: [
-              Text(
-                Lang.of(context).lbl_timezone,
-                style: MyAppThemeHelper.lightTheme.textTheme.bodyMedium,
-              ),
-              Text(
-                data.broadcast.timezone.toString(),
-                style: MyAppThemeHelper.lightTheme.textTheme.bodyMedium,
-              ),
-            ],
+          Gap(8.h),
+          LabeledValueWidget(
+            label: Lang.of(context).lbl_timezone,
+            value: data.broadcast.timezone.toString(),
           ),
-          SizedBox(height: 8.h),
+          Gap(8.h),
           Text(
             Lang.of(context).lbl_synopsis,
             style: MyAppThemeHelper.lightTheme.textTheme.bodyLarge,
           ),
-          SizedBox(height: 8.h),
+          Gap(8.h),
           Text(
             data.synopsis,
             style: MyAppThemeHelper.lightTheme.textTheme.bodyMedium,
             textAlign: TextAlign.justify,
           ),
-          SizedBox(height: 16.h),
+          Gap(16.h),
           Text(
             Lang.of(context).lbl_background,
             style: MyAppThemeHelper.lightTheme.textTheme.bodyLarge,
           ),
-          SizedBox(height: 8.h),
+          Gap(8.h),
           Text(
             data.background,
             style: MyAppThemeHelper.lightTheme.textTheme.bodyMedium,
             textAlign: TextAlign.justify,
           ),
-          SizedBox(height: 8.h),
+          Gap(8.h),
           Text(
             Lang.of(context).lbl_moreInfo,
             style: MyAppThemeHelper.lightTheme.textTheme.bodyLarge,
           ),
-          SizedBox(height: 8.h),
-          Text(
-            data.members != null
-                ? "${Lang.of(context).lbl_members}: ${data.members}"
+          Gap(8.h),
+          LabeledValueWidget(
+            label: Lang.of(context).lbl_members,
+            value: data.members != null
+                ? data.members.toString()
                 : Lang.of(context).lbl_membersna,
-            style: MyAppThemeHelper.lightTheme.textTheme.bodyMedium,
-            textAlign: TextAlign.justify,
           ),
-          SizedBox(height: 8.h),
-          Text(
-            data.favorites != null
-                ? "${Lang.of(context).lbl_favorites}: ${data.favorites}"
+          Gap(8.h),
+          LabeledValueWidget(
+            label: Lang.of(context).lbl_favorites,
+            value: data.favorites != null
+                ? data.favorites.toString()
                 : Lang.of(context).lbl_favoritesNA,
-            style: MyAppThemeHelper.lightTheme.textTheme.bodyMedium,
-            textAlign: TextAlign.justify,
           ),
         ],
       ),
@@ -367,7 +278,7 @@ class DetailsScreen extends StatelessWidget {
         ),
         Text(
           // ignore: unnecessary_null_comparison
-          value != null ? label : Lang.of(context).lbl_na,
+          value == null ? Lang.of(context).lbl_na : label,
           style: MyAppThemeHelper.lightTheme.textTheme.bodyMedium,
         ),
       ],

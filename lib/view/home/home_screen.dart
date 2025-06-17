@@ -1,4 +1,3 @@
-import 'package:anime/core/theme/theme.dart';
 import 'package:anime/core/utils/app_export.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -23,13 +22,13 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _curouselslider(state),
-                  SizedBox(height: 16.h),
+                  Gap(16.h),
                   _tvtext(context),
                   Padding(
                     padding: EdgeInsets.only(left: 10.w),
                     child: _buildListViewforcard(state.tvData, context),
                   ),
-                  SizedBox(height: 16.h),
+                  Gap(16.h),
                   _movietext(context),
                   Padding(
                     padding: EdgeInsets.only(left: 10.w),
@@ -117,7 +116,6 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 1.h),
                   Padding(
                     padding: EdgeInsets.only(left: 10.w),
                     child: SizedBox(
@@ -126,7 +124,7 @@ class HomeScreen extends StatelessWidget {
                         style: MyAppThemeHelper.lightTheme.textTheme.labelSmall!
                             .copyWith(
                           fontSize: 12.sp,
-                          color: MyAppThemeHelper.grey.withOpacity(0.8),
+                          color: MyAppThemeHelper.black,
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -234,7 +232,8 @@ class HomeScreen extends StatelessWidget {
                             );
                           },
                           errorBuilder: (context, error, stackTrace) {
-                            debugPrint('Error loading image: $error');
+                            debugPrint(
+                                '${Lang.of(context).error_lbl_Errorloadingimage} $error');
                             return Container(
                               color: MyAppThemeHelper.grey.withOpacity(0.3),
                               child: Center(
@@ -316,7 +315,7 @@ class HomeScreen extends StatelessWidget {
       physics: NeverScrollableScrollPhysics(),
       padding: EdgeInsets.all(16.w),
       itemCount: anime.length,
-      separatorBuilder: (context, index) => SizedBox(height: 12.h),
+      separatorBuilder: (context, index) => Gap(12.h),
       itemBuilder: (context, index) {
         return _buildListCard(anime[index], context);
       },
@@ -378,7 +377,8 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
                 errorBuilder: (context, error, stackTrace) {
-                  debugPrint('Error loading image: $error');
+                  debugPrint(
+                      '${Lang.of(context).error_lbl_Errorloadingimage} $error');
                   return Container(
                     height: 140.h,
                     width: 120.w,
@@ -392,7 +392,7 @@ class HomeScreen extends StatelessWidget {
                             color: MyAppThemeHelper.grey.withOpacity(0.5),
                             size: 32.sp,
                           ),
-                          SizedBox(height: 8.h),
+                          Gap(8.h),
                           Text(
                             Lang.of(context).error_imageUnvailable,
                             style:
@@ -455,7 +455,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 8.h),
+                        Gap(8.h),
                         Text(
                           anime.title,
                           style: MyAppThemeHelper
@@ -464,7 +464,7 @@ class HomeScreen extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        SizedBox(height: 4.h),
+                        Gap(4.h),
                         SizedBox(
                           child: Text(
                             "${Lang.of(context).lbl_rating}: ${anime.score?.toString()}",
@@ -473,6 +473,7 @@ class HomeScreen extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
+                        Gap(4.h),
                         Text(
                           "${Lang.of(context).lbl_members}:${anime.members}",
                           style:
@@ -480,7 +481,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 12.h),
+                    Gap(8.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -491,7 +492,7 @@ class HomeScreen extends StatelessWidget {
                               color: Colors.amber,
                               size: 16.sp,
                             ),
-                            SizedBox(width: 4.w),
+                            Gap(4.w),
                             Text(
                               anime.rating.toString(),
                               style: MyAppThemeHelper

@@ -27,9 +27,8 @@ class WebLinkChip extends StatelessWidget {
       child: Chip(
         label: Text(
           name,
-          style: TextStyle(
-            fontFamily: Lang.of(context).text_poppins,
-            color: Colors.white,
+          style: MyAppThemeHelper.lightTheme.textTheme.bodyLarge!.copyWith(
+            color: MyAppThemeHelper.white,
           ),
         ),
         backgroundColor: Theme.of(context).primaryColor,

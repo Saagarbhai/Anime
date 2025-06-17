@@ -27,6 +27,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "error_imageUnvailable": MessageLookupByLibrary.simpleMessage(
       "Image unavailable",
     ),
+    "error_lbl_Errorloadingimage": MessageLookupByLibrary.simpleMessage(
+      "Error loading image: ",
+    ),
     "lbl_allAnime": MessageLookupByLibrary.simpleMessage("All Anime"),
     "lbl_aried": MessageLookupByLibrary.simpleMessage("Aired"),
     "lbl_available": MessageLookupByLibrary.simpleMessage("Available"),

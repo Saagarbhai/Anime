@@ -1,5 +1,4 @@
 import 'package:anime/core/utils/app_export.dart';
-import 'package:shimmer/shimmer.dart';
 
 class ShimmerEffects {
   static Widget baseShimmer({

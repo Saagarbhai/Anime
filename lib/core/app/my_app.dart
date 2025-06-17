@@ -1,4 +1,3 @@
-import 'package:anime/core/theme/theme.dart';
 import 'package:anime/core/utils/app_export.dart';
 
 class MyApp extends StatelessWidget {

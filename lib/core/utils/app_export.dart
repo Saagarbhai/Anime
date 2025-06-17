@@ -43,3 +43,7 @@ export 'package:anime/viewmodel/web_view/webview_state.dart';
 export 'package:anime/view/custom_wiget/shimmer_effects.dart';
 export 'package:anime/view/custom_wiget/chip.dart';
 export 'package:google_fonts/google_fonts.dart';
+export 'package:shimmer/shimmer.dart';
+export 'package:anime/core/theme/theme.dart';
+export 'package:anime/view/custom_wiget/custom_row.dart';
+export 'package:gap/gap.dart';
