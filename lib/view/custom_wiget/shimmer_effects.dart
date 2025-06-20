@@ -74,7 +74,7 @@ class ShimmerEffects {
   static Widget listCardShimmer() {
     return baseShimmer(
       child: Container(
-        height: 140.h,
+        height: 170.h,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(12.sp),
@@ -325,9 +325,41 @@ class ShimmerEffects {
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             padding: EdgeInsets.all(16.w),
-            itemCount: 5,
+            itemCount: 10,
             separatorBuilder: (context, index) => SizedBox(height: 16.h),
             itemBuilder: (context, index) => listCardShimmer(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  static Widget searchShimmer() {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+            child: baseShimmer(
+              child: Container(
+                height: 60.h,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12.r),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 8.h),
+          baseShimmer(
+            child: ListView.separated(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.all(16.w),
+              itemCount: 10,
+              separatorBuilder: (context, index) => SizedBox(height: 12.h),
+              itemBuilder: (context, index) => listCardShimmer(),
+            ),
           ),
         ],
       ),

@@ -51,10 +51,12 @@ class DetailsScreen extends StatelessWidget {
                   ),
                 ],
                 borderRadius: BorderRadius.circular(12.r),
-                image: DecorationImage(
-                  image: NetworkImage(data!.images.jpg.largeImageUrl),
-                  fit: BoxFit.cover,
-                ),
+              ),
+              child: AppImageView(
+                height: 500.h,
+                width: double.infinity,
+                imagePath: data!.images.jpg.largeImageUrl,
+                fit: BoxFit.cover,
               ),
             ),
           ),
@@ -79,10 +81,10 @@ class DetailsScreen extends StatelessWidget {
             ],
           ),
           Gap(16.h),
-          LabeledValueWidget(
+          DateWidget(
             label: Lang.of(context).lbl_aried,
-            value:
-                "${data.aired.prop.from.day}/${data.aired.prop.from.month}/${data.aired.prop.from.year} - ${data.aired.prop.to.day}/${data.aired.prop.to.month}/${data.aired.prop.to.year}",
+            fromDate: data.aired.from,
+            toDate: data.aired.to,
           ),
           Gap(8.h),
           LabeledValueWidget(
@@ -278,7 +280,7 @@ class DetailsScreen extends StatelessWidget {
         ),
         Text(
           // ignore: unnecessary_null_comparison
-          value == null ? Lang.of(context).lbl_na : label,
+          value == "null" ? Lang.of(context).lbl_na : label,
           style: MyAppThemeHelper.lightTheme.textTheme.bodyMedium,
         ),
       ],

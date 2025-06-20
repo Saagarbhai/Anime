@@ -36,5 +36,6 @@
   "lbl_membersna": "Members: N/A",
   "lbl_favorites": "Favorites: ",
   "lbl_favoritesNA": "Favorites: N/A",
-  "error_lbl_Errorloadingimage": "Error loading image: "
+  "error_lbl_Errorloadingimage": "Error loading image: ",
+  "search_hint": "Search From Here..."
 }

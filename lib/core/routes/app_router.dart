@@ -14,6 +14,9 @@ class AppRoutes {
         final url = (args is String) ? args : '';
         return WebViewScreen(url: url);
       },
+      AppConstants.searchRoute: (context) {
+        return SearchScreen();
+      },
     };
   }
 }

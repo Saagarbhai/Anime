@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => LanguageBloc()),
         BlocProvider(create: (context) => HomeBloc()..add(LoadHomePageData())),
         BlocProvider(create: (context) => DetailBloc()),
+        BlocProvider(create: (context) => SearchBloc()),
       ],
       child: BlocBuilder<LanguageBloc, LanguageState>(
         builder: (context, state) {
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
                 theme: MyAppThemeHelper.lightTheme,
                 locale: locale,
                 supportedLocales: const [
-                  Locale('en'), // English
+                  Locale('en'),
                 ],
                 localizationsDelegates: localizationDelegates,
                 initialRoute: AppConstants.initialRoute,

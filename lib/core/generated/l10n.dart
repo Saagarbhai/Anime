@@ -274,6 +274,16 @@ class Lang {
       args: [],
     );
   }
+
+  /// `Search From Here...`
+  String get search_hint {
+    return Intl.message(
+      'Search From Here...',
+      name: 'search_hint',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Lang> {

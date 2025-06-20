@@ -61,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "lbl_tv": MessageLookupByLibrary.simpleMessage("Tv Anime"),
     "lbl_type": MessageLookupByLibrary.simpleMessage("Type"),
     "lbl_watchTrailer": MessageLookupByLibrary.simpleMessage("Watch Trailer"),
+    "search_hint": MessageLookupByLibrary.simpleMessage("Search From Here..."),
     "text_poppins": MessageLookupByLibrary.simpleMessage("Poppins"),
   };
 }

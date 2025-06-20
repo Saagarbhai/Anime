@@ -3,4 +3,5 @@ class AppConstants {
   static const String initialRoute = '/';
   static const String detailsRoute = '/details';
   static const String webViewRoute = '/webview';
+  static const String searchRoute = '/search';
 }
