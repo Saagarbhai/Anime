@@ -78,7 +78,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         final filteredAndSorted = state.filterData
             .where((e) => e.rank != null && e.rank! > 0)
             .toList()
-          ..sort((a, b) => b.rank!.compareTo(a.rank!));
+          ..sort((a, b) => a.rank!.compareTo(b.rank!));
         emit(state.copyWith(data: filteredAndSorted));
         break;
       case 'FAVORITES':

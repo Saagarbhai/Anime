@@ -46,6 +46,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   AppBar appbar(BuildContext context) {
+    final searchBloc = context.read<SearchBloc>();
     return AppBar(
       title: Text(
         Lang.of(context).appbar_title,
@@ -60,7 +61,7 @@ class HomeScreen extends StatelessWidget {
           icon: Icon(Icons.search, size: 24.sp),
           onPressed: () {
             Navigator.pushNamed(context, AppConstants.searchRoute);
-            context.read<SearchBloc>().add(LoadSearchDataEvent());
+            searchBloc.add(LoadSearchDataEvent());
           },
         ),
       ],
@@ -71,7 +72,7 @@ class HomeScreen extends StatelessWidget {
     return ListView.separated(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.all(16.w),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       itemCount: anime.length,
       separatorBuilder: (context, index) => Gap(12.h),
       itemBuilder: (context, index) {

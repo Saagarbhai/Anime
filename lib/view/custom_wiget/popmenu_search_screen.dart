@@ -10,6 +10,11 @@ class FilterPopupButton extends StatelessWidget {
       icon: Icon(Icons.filter_alt_outlined),
       iconColor: MyAppThemeHelper.primary,
       color: MyAppThemeHelper.white,
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      padding: EdgeInsets.zero,
       itemBuilder: (context) => [
         _buildMenuItem(context, "ALL"),
         _buildMenuItem(context, "TV"),
@@ -37,7 +42,7 @@ class FilterPopupButton extends StatelessWidget {
       child: Center(
         child: Text(
           label,
-          style: const TextStyle(fontSize: 15, letterSpacing: 1),
+          style: const TextStyle(fontSize: 15, letterSpacing: 0.8),
         ),
       ),
     );

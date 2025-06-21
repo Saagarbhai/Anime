@@ -7,9 +7,9 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<DetailBloc>();
+    final detailBloc = context.read<DetailBloc>();
     debugPrint(id.toString());
-    bloc.add(LoadAnimeDetail(id!));
+    detailBloc.add(LoadAnimeDetail(id!));
     return Scaffold(
       appBar: _appbar(context),
       body: BlocBuilder<DetailBloc, DetailState>(
@@ -201,17 +201,23 @@ class DetailsScreen extends StatelessWidget {
           Gap(8.h),
           LabeledValueWidget(
             label: Lang.of(context).lbl_day,
-            value: data.broadcast.day.toString(),
+            value: data.broadcast.day.toString() == "null"
+                ? Lang.of(context).lbl_na
+                : data.broadcast.day.toString(),
           ),
           Gap(8.h),
           LabeledValueWidget(
             label: Lang.of(context).lbl_time,
-            value: data.broadcast.time.toString(),
+            value: data.broadcast.time.toString() == "null"
+                ? Lang.of(context).lbl_na
+                : data.broadcast.time.toString(),
           ),
           Gap(8.h),
           LabeledValueWidget(
             label: Lang.of(context).lbl_timezone,
-            value: data.broadcast.timezone.toString(),
+            value: data.broadcast.timezone.toString() == "null"
+                ? Lang.of(context).lbl_na
+                : data.broadcast.timezone.toString(),
           ),
           Gap(8.h),
           Text(

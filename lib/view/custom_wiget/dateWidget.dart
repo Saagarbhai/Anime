@@ -13,7 +13,7 @@ class DateWidget extends StatelessWidget {
     required this.toDate,
   });
 
-  String _formatAiredDate(String? from, String? to) {
+  String _formatAiredDate(String? from, String? to, BuildContext context) {
     if (from == null && to == null) return "Unknown";
 
     try {
@@ -39,9 +39,9 @@ class DateWidget extends StatelessWidget {
       if (fromFormatted != null && toFormatted != null) {
         return "$fromFormatted - $toFormatted";
       } else if (fromFormatted != null) {
-        return "$fromFormatted - 00/00/0000";
+        return "$fromFormatted - ${Lang.of(context).lbl_na}";
       } else if (toFormatted != null) {
-        return "00/00/0000 - $toFormatted";
+        return "${Lang.of(context).lbl_na} - $toFormatted";
       } else {
         return "Unknown";
       }
@@ -61,7 +61,7 @@ class DateWidget extends StatelessWidget {
         ),
         Expanded(
           child: Text(
-            _formatAiredDate(fromDate, toDate),
+            _formatAiredDate(fromDate, toDate, context),
             style: Theme.of(context).textTheme.bodyMedium,
           ),
         ),

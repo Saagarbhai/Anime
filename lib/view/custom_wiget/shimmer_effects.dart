@@ -15,12 +15,15 @@ class ShimmerEffects {
 
   static Widget carouselShimmer() {
     return baseShimmer(
-      child: Container(
-        height: 205.h,
-        margin: EdgeInsets.symmetric(horizontal: 24.w),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12.sp),
+      child: Padding(
+        padding: EdgeInsets.only(top: 12.h),
+        child: Container(
+          height: 205.h,
+          margin: EdgeInsets.symmetric(horizontal: 24.w),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12.sp),
+          ),
         ),
       ),
     );
@@ -339,10 +342,11 @@ class ShimmerEffects {
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+            padding: EdgeInsets.only(
+                left: 16.w, right: 16.w, top: 16.h, bottom: 8.h),
             child: baseShimmer(
               child: Container(
-                height: 60.h,
+                height: 55.h,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12.r),
@@ -350,7 +354,6 @@ class ShimmerEffects {
               ),
             ),
           ),
-          SizedBox(height: 8.h),
           baseShimmer(
             child: ListView.separated(
               shrinkWrap: true,
