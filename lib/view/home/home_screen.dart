@@ -22,10 +22,8 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AnimeCarouselSlider(animeList: state.data),
-                  Gap(16.h),
                   CustomTextWidget(text: Lang.of(context).lbl_tv),
                   AnimeHorizontalListView(listData: state.tvData),
-                  Gap(16.h),
                   CustomTextWidget(text: Lang.of(context).lbl_movie),
                   AnimeHorizontalListView(listData: state.movieData),
                   CustomTextWidget(text: Lang.of(context).lbl_allAnime),
